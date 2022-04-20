@@ -1,40 +1,7 @@
 <%= render 'books/list' %>
 <p id="notice"></p>
-<div class="container px-5 px-sm-0">
-
-  <div class="row">
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <table class="table">
-        <tbody>
-
-          <tr>
-            <th>name</th>
-            <th><%= @users.name %></th>
-          </tr>
-          <tr>
-            <th>introduction</th>
-            <th></th>
-          </tr>
-
-        </tbody>
-      </table>
-      <h2>New book</h2>
-      <%= form_with model: @book do |f| %>
-        <div class="field">
-        <label for="book_title">Title</label><br>
-           <%= f.text_field :title %>
-        </div>
-
-        <div class="field">
-        <label for="book_body">Opinion</label><br>
-           <%= f.text_area :body %>
-        </div>
-        <div class="actions">
-          <%= f.submit ' Create Book ' %>
-        </div>
-      <% end %>
-    </div>
+<%= render 'userinfo', user: @user, book: @book %>
+ 
     <div class="col-md-8 offset-md-1">
         <h2>Users</h2>
         <table class="table table-hover table-inverse">
