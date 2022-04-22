@@ -1,7 +1,3 @@
-<%= render 'books/list' %>
-<%= flash[:success] %>
-<%= flash[:login] %>
-<%= flash[:update] %>
 <%= render 'userinfo', user: @user, book: @book  %>
     <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
@@ -18,7 +14,9 @@
             <% @books.each do |book| %>
             <tr>
               <td>
-                <%= image_tag book.user.get_profile_image(80,80) %>
+                <%= link_to user_path(@user.id) do %>
+                  <%= image_tag book.user.get_profile_image(80,80) %>
+                <% end %>
               </td>
               <td>
                 <%= link_to book_path(book.id) do %>

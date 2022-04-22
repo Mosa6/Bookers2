@@ -1,5 +1,18 @@
-<%= render 'books/list' %>
+
 <p id="notice"></p>
+<div class="container px-5 px-sm-0">
+<% if @book.errors.any? %>
+  <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+  <div id="error_explanation">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+</div>
+
 <%= render 'users/userinfo', user: @user, book: @book %>
 
     <div class="col-md-8 offset-md-1">
@@ -17,7 +30,9 @@
             <% @books.each do |book| %>
             <tr>
               <td>
-                <%= image_tag book.user.get_profile_image(80,80) %>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(80,80) %>
+                <% end %>
               </td>
               <td>
                 <%= link_to book_path(book.id) do %>

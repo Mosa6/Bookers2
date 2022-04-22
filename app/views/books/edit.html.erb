@@ -1,19 +1,31 @@
-<%= render 'books/list' %>
+<p id="notice"></p>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
       <h1>Editing Book</h1>
-      <%= form_with model: @book do |f| %>
+      <% if @book.errors.any? %>
+        <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+        <div id="error_explanation">
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+       <%= form_with model: @book do |f| %>
         <div class="form-group">
-        <label for="book_title">Title</label><br>
-         <%= f.text_field :title, class: 'form-control book_title' %>
+          <label for="book_title">Title</label><br>
+          <%= f.text_field :title, class: 'form-control book_title' %>
         </div>
         <div class="form-group">
-        <label for="book_body">Opinion</label><br>
-        <%= f.text_area :body, class: 'form-control book_body' %>
+          <label for="book_body">Opinion</label><br>
+          <%= f.text_area :body, class: 'form-control book_body' %>
         </div>
         <div class="form-group">
-        <%= f.submit ' Update Book ', class: 'btn btn-success' %>
+          <%= f.submit ' Update Book ', class: 'btn btn-success' %>
         </div>
       <% end %>
       <%= link_to "Show", book_path(@book.id) %>
@@ -23,5 +35,4 @@
     </div>
   </div>
 </div>
-
 <%= render 'books/footer' %>
